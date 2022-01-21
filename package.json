@@ -1,0 +1,22 @@
+{
+  "name": "learning-portal",
+  "version": "1.0.0",
+  "description": "A node based application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaikSatvik/learning-portal.git"
+  },
+  "author": "Developers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NaikSatvik/learning-portal/issues"
+  },
+  "homepage": "https://github.com/NaikSatvik/learning-portal#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
