@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 app.get('/check-db', (req, res) => {
     conn.connect(function (err) {
-        conn.query(`SELECT * FROM countrydata_final`, function (err, result, fields) {
+        conn.query(`select * from academic_main_db.countrydata_final`, function (err, result, fields) {
             if (err) res.send(err);
             if (result) res.send(result);
         });
