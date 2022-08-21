@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register User</title>
+</head>
+<body>
+    <form action="/register" method="post">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group mb-4">
+                    <label for="username">Role</label><br>
+                    <input type="radio" name="role" value="student">
+                    <span class="badge badge-success">Student</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <input type="radio" name="role" value="faculty">
+                    <span class="badge badge-primary">Faculty</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <input type="radio" name="role" value="guardian">
+                    <span class="badge badge-warning">Guardian</span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="username">Email</label>
+                    <input type="email" name="email" class="form-control" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="userpassword">Password</label>
+                    <input type="password" name="password" class="form-control" id="userpassword" placeholder="Enter password">
+                </div>
+                <div class="mt-4">
+                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Create User</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
