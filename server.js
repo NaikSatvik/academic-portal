@@ -36,49 +36,49 @@ app.use(
 );
 
 const isAuth = (req, res, next) => {
-    if(req.session.isAuth) {
+    if (req.session.isAuth) {
         next();
     } else {
         res.redirect('/login');
     }
 }
 
-app.get('/login',(req,res) => {
+app.get('/login', (req, res) => {
     res.render('login')
 });
 
-app.get('/stuDash', isAuth, (req,res) => {
+app.get('/stuDash', isAuth, (req, res) => {
     res.render('stuDash')
 });
 
-app.get('/facDash', isAuth, (req,res) => {
+app.get('/facDash', isAuth, (req, res) => {
     res.render('facDash')
 });
 
-app.get('/guarDash', isAuth, (req,res) => {
+app.get('/guarDash', isAuth, (req, res) => {
     res.render('guarDash')
 });
 
-app.post('/login', async (req,res) => {
+app.post('/login', async (req, res) => {
     const { role, email, password } = req.body;
 
-    const userRole = await UserModel.findOne({role});
-    const user = await UserModel.findOne({email});
+    const userRole = await UserModel.findOne({ role });
+    const user = await UserModel.findOne({ email });
 
-    console.log(role);
-    console.log(user.role);
+    console.log("Entered Data:- " + role);
+    console.log("Actual Data:- " + user.role);
 
     if (role != user.role) {
         return res.redirect('/login');
     }
 
-    if(!user) {
+    if (!user) {
         return res.redirect('/login');
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
-    if(!isMatch) {
+    if (!isMatch) {
         return res.redirect('/login');
     }
 
@@ -97,14 +97,14 @@ app.post('/login', async (req,res) => {
     }
 });
 
-app.get('/register',(req,res) => {
+app.get('/register', (req, res) => {
     res.render('registerUser')
 });
 
-app.post('/register', async (req,res) => {
+app.post('/register', async (req, res) => {
     const { role, email, password } = req.body;
-    let user = await UserModel.findOne({email});
-    if(user) {
+    let user = await UserModel.findOne({ email });
+    if (user) {
         return res.redirect('/register');
     }
     const hashedPsw = await bcrypt.hash(password, 12);
@@ -117,9 +117,9 @@ app.post('/register', async (req,res) => {
     res.redirect('/register');
 });
 
-app.post('/logout', (req,res) => {
+app.post('/logout', (req, res) => {
     req.session.destroy((err) => {
-        if(err) throw err;
+        if (err) throw err;
         res.redirect('/login');
     });
 });
