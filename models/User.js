@@ -6,6 +6,14 @@ userSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	fname: {
+		type: String,
+		required: true,
+	},
+	lname: {
+		type: String,
+		required: true,
+	},
 	email: {
 		type: String,
 		required: true,
@@ -13,6 +21,19 @@ userSchema = new Schema({
 	password: {
 		type: String,
 		required: true,
+	},
+	mobile: {
+		type: String,
+		required: true,
+	},
+	stud_of: {
+		type: String,
+	},
+	guar_of: {
+		type: String,
+	},
+	otp: {
+		type: String,
 	},
 	createdAt: {
 		type: Date,

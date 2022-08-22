@@ -47,6 +47,10 @@ app.get('/login', (req, res) => {
     res.render('login')
 });
 
+app.get('/adminDash', (req, res) => {      //isAuth not applied critical.
+    res.render('adminDash')
+});
+
 app.get('/stuDash', isAuth, (req, res) => {
     res.render('stuDash')
 });
@@ -102,19 +106,57 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-    const { role, email, password } = req.body;
+    const { role, fname, lname, email, password, mobile, stud_of, guar_of, otp } = req.body;
     let user = await UserModel.findOne({ email });
     if (user) {
         return res.redirect('/register');
     }
     const hashedPsw = await bcrypt.hash(password, 12);
-    user = new UserModel({
-        role,
-        email,
-        password: hashedPsw,
-    });
-    await user.save();
-    res.redirect('/register');
+    if (role == 'student') {
+        user = new UserModel({
+            role,
+            fname,
+            lname,
+            email,
+            password: hashedPsw,
+            mobile,
+            stud_of,
+            guar_of: null,
+            otp: null,
+        });
+        await user.save();
+        res.redirect('/register');
+    }
+    if (role == 'faculty') {
+        user = new UserModel({
+            role,
+            fname,
+            lname,
+            email,
+            password: hashedPsw,
+            mobile,
+            stud_of: null,
+            guar_of: null,
+            otp: null,
+        });
+        await user.save();
+        res.redirect('/register');
+    }
+    if (role == 'guardian') {
+        user = new UserModel({
+            role,
+            fname,
+            lname,
+            email,
+            password: hashedPsw,
+            mobile,
+            stud_of: null,
+            guar_of,
+            otp: null,
+        });
+        await user.save();
+        res.redirect('/register');
+    }
 });
 
 app.post('/logout', (req, res) => {
